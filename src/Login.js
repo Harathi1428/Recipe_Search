@@ -11,16 +11,21 @@ function Login(){
     const handleSubmit=(e)=>{
         e.preventDefault()
         axios.post('http://localhost:3001/login',{email,password})
-        .then(response=>{console.log(response)
-            if(response.data){
+        .then(response=>{console.log("frontend",response.data)
+            if(response.data==="Login"){
+                navigate('/App')
+            }
+            else if(response.data==="invalid"){
+                alert("Check password")
                 console.log(response)
                 // const userId = response.data.userId;
                 // localStorage.setItem('userId', userId);
-                navigate('/App')
+                
             }
             else{
                 console.log(response.data)
-                console.log("error login")
+                alert("create an account")
+                
             }    
         })
         .catch(err=>console.log("NEW ERROR",err))
